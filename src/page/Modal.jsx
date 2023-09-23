@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { updateModal } from "../Feature/ModalSlice";
+import { setUrl, updateModal } from "../Feature/ModalSlice";
 import { Button, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,8 +21,8 @@ const style = {
 const schema = yup.object({
   playlistLink: yup
     .string()
-    .matches("playlist", "Enter Valid Url Link")
-    .required("this is required field"),
+    .required("This is required field")
+    .matches("list", "Enter Valid Url Link"),
 });
 export default function BasicModal() {
   const { modalOpen } = useSelector((state) => state.ModalSlice);
@@ -38,7 +38,7 @@ export default function BasicModal() {
   });
 
   const submitData = (data) => {
-    console.log(data);
+    dispatch(setUrl(data.playlistLink));
   };
 
   return (
