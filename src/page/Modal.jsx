@@ -4,6 +4,9 @@ import Modal from "@mui/material/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateModal } from "../Feature/ModalSlice";
 import { Button, TextField } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const style = {
   position: "absolute",
@@ -15,11 +18,28 @@ const style = {
   boxShadow: 24,
   p: 2,
 };
-
+const schema = yup.object({
+  playlistLink: yup
+    .string()
+    .matches("playlist", "Enter Valid Url Link")
+    .required("this is required field"),
+});
 export default function BasicModal() {
   const { modalOpen } = useSelector((state) => state.ModalSlice);
-  console.log(modalOpen);
   const dispatch = useDispatch();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
+
+  const submitData = (data) => {
+    console.log(data);
+  };
 
   return (
     <div>
@@ -37,24 +57,33 @@ export default function BasicModal() {
             link. Please make sure the link is correct. Otherwise we wont able
             to fetch the playlist information.
           </Typography>
-          <TextField
-            variant="standard"
-            fullWidth
-            sx={{ my: "8px" }}
-            label="PlayList ID or Link"
-          />
-          <Box display="flex" justifyContent="end" gap={2} mt={1}>
-            <Button
-              variant="contained"
-              size="small"
-              color="error"
-              onClick={() => dispatch(updateModal(false))}>
-              close
-            </Button>
-            <Button variant="contained" size="small" color="primary">
-              Add playlist
-            </Button>
-          </Box>
+          <form onSubmit={handleSubmit(submitData)}>
+            <TextField
+              {...register("playlistLink")}
+              variant="standard"
+              fullWidth
+              label="Playlist ID or Link"
+              error={!!errors?.playlistLink}
+              helperText={errors?.playlistLink?.message}
+              sx={{ mt: 3 }}
+            />
+            <Box display="flex" justifyContent="end" gap={2} mt={3}>
+              <Button
+                variant="contained"
+                size="small"
+                color="error"
+                onClick={() => dispatch(updateModal(false))}>
+                close
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                size="small"
+                color="primary">
+                Add playlist
+              </Button>
+            </Box>
+          </form>
         </Box>
       </Modal>
     </div>

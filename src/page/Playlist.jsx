@@ -4,6 +4,7 @@ import { updateModal } from "../Feature/ModalSlice";
 
 const Playlist = () => {
   const dispatch = useDispatch();
+
   return (
     <Box ml={{ xs: 0, md: 2 }} mt={{ xs: 2, md: 3 }}>
       <Typography variant="h5" fontWeight="bold">
