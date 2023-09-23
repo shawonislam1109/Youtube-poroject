@@ -4,16 +4,14 @@ import { Box } from "@mui/material";
 
 const Main = () => {
   return (
-    <div>
-      <Box display="flex">
-        <Box>
-          <LeftSideNav />
-        </Box>
-        <Box>
-          <Outlet />
-        </Box>
+    <Box display="flex">
+      <Box position="sticky" top={0}>
+        <LeftSideNav />
       </Box>
-    </div>
+      <Box>
+        <Outlet />
+      </Box>
+    </Box>
   );
 };
 

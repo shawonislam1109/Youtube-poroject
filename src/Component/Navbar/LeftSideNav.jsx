@@ -17,6 +17,8 @@ const LeftSideNav = () => {
   return (
     <Box display="flex">
       <Box
+        position="sticky"
+        top={0}
         sx={{
           backgroundColor: "primary.main",
           width: "55px",
@@ -25,7 +27,6 @@ const LeftSideNav = () => {
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
-          position: "static",
         }}>
         <Box pt="1rem">
           {sideBtn ? (

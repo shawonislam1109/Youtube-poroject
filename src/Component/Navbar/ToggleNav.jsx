@@ -7,63 +7,62 @@ import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 const ToggleNav = () => {
   return (
-    <div>
-      <Box
+    <Box
+      position="sticky"
+      top={0}
+      sx={{
+        width: "200px",
+        height: "100vh",
+        borderRight: "1px solid #DFE1E6",
+        position: "sticky",
+        top: "0",
+        right: "0",
+        bottom: "0",
+      }}>
+      <Button
         sx={{
-          width: "200px",
-          height: "100vh",
-          borderRight: "1px solid white",
-          position: "static",
+          color: "black",
         }}>
-        <Button
+        <YouTubeIcon
           sx={{
-            color: "black",
-          }}>
-          <YouTubeIcon
-            sx={{
-              width: "50px",
-              height: "50px",
-              color: "red",
-            }}
-          />
-          Amar YouTube
-        </Button>
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          pl={2}>
-          <Box>
-            <Link>
-              <Button startIcon={<HomeIcon />} sx={{ color: "black" }}>
-                Home
-              </Button>
-            </Link>
-          </Box>
-          <Box>
-            <Link>
-              <Button startIcon={<AccessTimeIcon />} sx={{ color: "black" }}>
-                Recents
-              </Button>
-            </Link>
-          </Box>
-          <Box>
-            <Link>
-              <Button startIcon={<PlaylistPlayIcon />} sx={{ color: "black" }}>
-                Playlist
-              </Button>
-            </Link>
-          </Box>
-          <Box>
-            <Link>
-              <Button startIcon={<FavoriteIcon />} sx={{ color: "black" }}>
-                Favourite
-              </Button>
-            </Link>
-          </Box>
+            width: "50px",
+            height: "50px",
+            color: "red",
+          }}
+        />
+        Amar YouTube
+      </Button>
+      <Box display="flex" flexDirection="column" justifyContent="center" pl={2}>
+        <Box>
+          <Link to="/">
+            <Button startIcon={<HomeIcon />} sx={{ color: "black" }}>
+              Home
+            </Button>
+          </Link>
+        </Box>
+        <Box>
+          <Link to="/recent">
+            <Button startIcon={<AccessTimeIcon />} sx={{ color: "black" }}>
+              Recents
+            </Button>
+          </Link>
+        </Box>
+        <Box>
+          <Link to="/playlist">
+            <Button startIcon={<PlaylistPlayIcon />} sx={{ color: "black" }}>
+              Playlist
+            </Button>
+          </Link>
+        </Box>
+        <Box>
+          <Link to="/favourite">
+            <Button startIcon={<FavoriteIcon />} sx={{ color: "black" }}>
+              Favourite
+            </Button>
+          </Link>
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
 
