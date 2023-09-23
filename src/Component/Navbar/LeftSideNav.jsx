@@ -7,9 +7,13 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import ToggleNav from "./ToggleNav";
+import { useDispatch } from "react-redux";
+import { updateModal } from "../../Feature/ModalSlice";
+import BasicModal from "../../page/Modal";
 
 const LeftSideNav = () => {
   const [sideBtn, setSideBtn] = useState(false);
+  const dispatch = useDispatch();
   return (
     <Box display="flex">
       <Box
@@ -49,6 +53,7 @@ const LeftSideNav = () => {
             <YouTubeIcon />
           </Button>
           <Button
+            onClick={() => dispatch(updateModal(true))}
             sx={{
               color: "primary.contrastText",
             }}>
@@ -67,6 +72,7 @@ const LeftSideNav = () => {
       </Box>
       <Box />
       <Box ml={2}>{!sideBtn && <ToggleNav />}</Box>
+      <BasicModal />
     </Box>
   );
 };
